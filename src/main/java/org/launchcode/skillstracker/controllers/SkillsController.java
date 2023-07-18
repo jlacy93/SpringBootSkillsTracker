@@ -1,31 +1,29 @@
 package org.launchcode.skillstracker.controllers;
 
+
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-
 public class SkillsController {
-    @GetMapping(value = "") //get stuff for our page
-    @ResponseBody //response
-    public String startSkills() {
+
+    @RequestMapping(value="")
+    @ResponseBody
+    public String startSkills () {
         String html = "<h1>Skills Tracker</h1>" +
+                "<h2>We have a few skills we would like to learn. Here is the list!</h2>" +
                 "<ol>" +
                 "<li>Java</li>" +
+                "<li>JavaScript</li>" +
                 "<li>Python</li>" +
-                "</ol>" +
-                "<button onclick=\"window.location.href=''https://localhost:8800/form'\";>Change it up!</button>";
-        //"<button href='form'>Change it up!</button>";
+                "</ol>"; //+
+        // i added this button for fun lol -hanna
+        // "<button onclick=\"window.location.href='http://localhost:8080/form'\";>change it up!</button>";
 
         return html;
     }
 
-    ;
-
-    @GetMapping(value = "form")
+    @GetMapping(value="form")
     @ResponseBody
     public String formSkills() {
         String html = "<form method='post'>" +
@@ -51,12 +49,11 @@ public class SkillsController {
                 "</select><br>" +
                 "<input type = 'submit' value = 'Submit' />" +
                 "</form>";
+
         return html;
     }
 
-    ;
-
-    @PostMapping(value = "form")
+    @PostMapping(value="form")
     @ResponseBody
     public String namePage(@RequestParam String name, @RequestParam String firstChoice, @RequestParam String secondChoice, @RequestParam String thirdChoice) {
         String html = "<h1>" + name + "</h1>" +
@@ -64,11 +61,11 @@ public class SkillsController {
                 "<li>" + firstChoice + "</li>" +
                 "<li>" + secondChoice + "</li>" +
                 "<li>" + thirdChoice + "</li>" +
-                "</ol>" +
-                // i added this button for fun lol -hanna
-                "<button onclick=\"window.location.href='http://localhost:8080'\";>reset</button>";
-        return html;
+                "</ol>";// +
+        // i added this button for fun lol -hanna
+        // "<button onclick=\"window.location.href='http://localhost:8080'\";>reset</button>";
 
+        return html;
     }
 
 }
